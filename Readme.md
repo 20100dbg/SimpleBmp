@@ -45,18 +45,20 @@ La grille de pixel est une suite d'octet, la place de chaque octet définissant 
 - Dans le projet cible, ajouter en référence le fichier SimpleBmp.dll
 - Code simple de test :
 
-	using SimpleBmp
+```
+using SimpleBmp
+```
+```
+Bmp2 b = new Bmp2(25, 25);
 
-	Bmp2 b = new Bmp2(20, 20);
+for (int i = 0; i < b.Width; i++)
+{
+    for (int j = 0; j < b.Height; j++)
+    {
+        b.SetPixel(i, j, (byte)((i + 1) % b.PaletteCount));
+    }
+}
 
-	for (int i = 0; i < b.Width; i++)
-	{
-	    for (int j = 0; j < b.Height; j++)
-	    {
-	        b.SetPixel(i, j, (byte)(i % 7));
-	    }
-	}
-
-	Bmp2Viewer viewer = new Bmp2Viewer(b.Width, b.Height, 5);
-	viewer.Show(b);
-
+Bmp2Viewer viewer = new Bmp2Viewer();
+viewer.Draw(b);
+```
